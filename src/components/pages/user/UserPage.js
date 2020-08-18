@@ -20,8 +20,7 @@ class UserPage extends Component {
         })
       })
       const users = await response.json()
-  
-      this.setState({
+        this.setState({
         isUsersDownloaded : true,
         users
       })
