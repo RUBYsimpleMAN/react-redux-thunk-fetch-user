@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import UserOptions from "./UserOptions"
-// import UserPageError from "./UserPageError"
+import UserPageError from "./UserPageError"
 
 class UserPage extends Component {
   state = {
@@ -16,31 +16,37 @@ class UserPage extends Component {
         headers: new Headers({
           "Content-Type": "application/json"
         })
-      });
-      const users = await response.json();
+      })
+      const users = await response.json()
   
-      this.setState( {
+      this.setState({
         isUsersDownloaded : true,
         users
-      } );
+      })
     } 
     catch (error)
     {
       this.setState({
         isError: true,
         error
-      });
+      })
     }
   }
   render() {
-    if ( this.state.isError ) {
-      return Error; // UserPageError
+    if (this.state.isError) {
+      return(
+        <UserPageError
+          name={this.state.error.name}
+          message={this.state.error.message}
+          path="/ServerSubstitution.json"
+        />
+      )
     }
-    if ( !this.state.isUsersDownloaded ) {
-      return <div> Data uploading </div>;
+    if (!this.state.isUsersDownloaded) {
+      return <div> Data uploading </div>
     }
-    if ( this.state.users.length === 0 ) {
-      return <div> There are no users there </div>;
+    if (this.state.users.length === 0) {
+      return <div> There are no users there </div>
     }
     return (
       <div>
@@ -51,9 +57,9 @@ class UserPage extends Component {
               { ...userInfo }
             />
           )
-        ) }
+        )}
       </div>
-    );
+    )
   }
 }
 
