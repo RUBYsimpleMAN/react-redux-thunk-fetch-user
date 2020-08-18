@@ -11,10 +11,12 @@ class UserPage extends Component {
   }
   componentDidMount = async () => {
     try {
-      const response = await fetch(document.location.origin + "/ServerSubstitution.json", {
-        method: "get",
-        headers: new Headers({
-          "Content-Type": "application/json"
+      let userFetchURL = 'http://77.120.241.80:8911/api/users'
+      const response = await fetch(userFetchURL,
+      // const response = await fetch(document.location.origin + "/ServerSubstitution.json",
+       {  method: "get",
+          headers: new Headers({
+            "Content-Type": "application/json"
         })
       })
       const users = await response.json()
