@@ -13,7 +13,7 @@ const UserPage = ({ readUsersAction, users }) => {
 
   return (
     <div>
-      {users.map(userOnServer => (
+      {UserOptions.map(userOnServer => (
             <UserOptions
               key={ userOnServer.id }
               { ...userOnServer }
